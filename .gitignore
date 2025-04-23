@@ -1,0 +1,27 @@
+
+# Node
+node_modules/
+.env
+dist/
+build/
+
+# SQLite 数据库
+*.db
+
+# 日志文件
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# VSCode 等编辑器配置
+.vscode/
+
+# 前端打包产物（比如 React/Vite）
+client/dist/
+client/node_modules/
+
+# 临时文件
+*.tmp
+*.swp
