@@ -1,10 +1,6 @@
 
 
 
-
-
-
-
 const { OpenAI } = require('openai');
 
 
@@ -16,7 +12,6 @@ const openai = new OpenAI({
 async function getChatResponse(messages) {
 
   const res = await openai.chat.completions.create({
-    // model: 'gpt-3.5-turbo',
     model: "deepseek-chat",
     messages, // 数组格式：[{ role: 'user', content: 'Hello!' }]
   });

@@ -17,7 +17,7 @@
                     :alt="item.isAi ? 'bot' : 'user'" 
                   />
               </div>
-              <div class="message" :id="item.unique">{{ item.value }}</div>
+              <div class="message" :key="item.unique">{{ item.value }}</div>
           </div>
       </div>
     </div>
@@ -33,8 +33,10 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import bot from '../assets/bot.svg'
-import user from '../assets/user.svg'
+/* import bot from '../assets/bot.svg'
+import user from '../assets/user.svg' */
+import bot from '../assets/robot.jpg';
+import user from '../assets/avator.jpg';
 
 const formRef = ref();
 const chatContainerRef = ref();
@@ -149,7 +151,7 @@ const handleSubmit = async (e) => {
     }
 }
 
-
+// ai 消息转文本
 const mdToChatText = (md) => {
   return md
     .replace(/```[\s\S]*?```/g, '')           // 删除多行代码块
@@ -254,7 +256,6 @@ onBeforeUnmount(() => {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -264,13 +265,13 @@ onBeforeUnmount(() => {
 .profile {
   width: 36px;
   height: 36px;
-  border-radius: 5px;
-
+  border-radius: 4px;
+  overflow: hidden;
   background: #EDEDED;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .ai .profile {
@@ -284,24 +285,50 @@ onBeforeUnmount(() => {
 }
 
 .message {
-  /* background-color: rgba(255, 255, 255, .6); */
-  /* border-radius: 16px; */
-  padding: 10px 20px 20px;
-  flex: 1;
-
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 8px 16px;
+  /* flex: 1; */
   color: #000000;
   font-size: 20px;
-
   max-width: 100%;
-  overflow-x: scroll;
+  /* overflow: hidden; */
   white-space: pre-wrap; 
-
   -ms-overflow-style: none;
   scrollbar-width: none;
+  min-height: 40px;
+  position: relative;
 }
 
 .use .message {
-  /* background-color: #95EC69; */
+  background-color: #95EC69;
+}
+
+.use .message::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -10px;
+  top: 5px;
+  border: 5px solid transparent;
+  border-left: 5px solid #95EC69;
+}
+
+.ai .message::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -10px;
+  top: 5px;
+  border: 5px solid transparent;
+  border-right: 5px solid #fff;
+}
+
+/* 左右翻转 */
+.use .chat {
+  flex-direction: row-reverse
 }
 
 /* hides scrollbar */

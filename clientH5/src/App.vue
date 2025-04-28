@@ -3,8 +3,9 @@ import Client from './components/client.vue'
 </script>
 
 <template>
-  
-  <Client />
+
+  <!-- <Client /> -->
+  <router-view />
 </template>
 
 <style scoped>
